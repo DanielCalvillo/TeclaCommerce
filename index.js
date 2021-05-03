@@ -1,19 +1,21 @@
 
-var url = "https://api.mercadolibre.com/sites/"
+var url = "https://api.mercadolibre.com/categories/" //POR QUÉ NO LET?
+let idCategoria = "MLM1144"
 
 
 var listCategorias = document.getElementById("categorias");
 
 
 async function getCategorias(url) {
-    let resultado = await fetch(url + "MLA/categories");
+    let resultado = await fetch(url + idCategoria);
     let parseJson = await resultado.json()
     return parseJson
 }
 
 async function asignarCategorias(url) {
-    let categorias = await getCategorias(url)
-    for (categoria in categorias) {
+    let categorias = await getCategorias(url);
+    let subCategorias = categorias.children_categories;
+    for (let index = 0; index < subCategorias.length; index++) {
         let divCategoria = document.createElement('li')
         divCategoria.setAttribute('class', "nav-item")
 
@@ -22,7 +24,7 @@ async function asignarCategorias(url) {
         linkCategoria.style.fontSize = '14px'
         linkCategoria.style.textAlign = 'center'
 
-        linkCategoria.textContent = `${categorias[categoria].name}`
+        linkCategoria.textContent = `${categorias.children_categories[index].name}`
 
         divCategoria.appendChild(linkCategoria);
         listCategorias.appendChild(divCategoria)
