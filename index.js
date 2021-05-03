@@ -5,11 +5,22 @@ let idCategoria = "MLM1144"
 
 var listCategorias = document.getElementById("categorias");
 
-
+//LLAMADO DE SUBCATEGORIAS (TITULOS)
 async function getCategorias(url) {
-    let resultado = await fetch(url + idCategoria);
-    let parseJson = await resultado.json()
-    return parseJson
+    let parseJson = [];
+    
+    try {
+        let getCategorias = await fetch(url + idCategoria);
+        parseJson = await getCategorias.json()
+        return parseJson
+    } catch (error) {
+        if(parseJson.length === 0){
+            console.log('Error al consumir la API')
+        }else{
+            console.log('No existen datos');
+            console.log(parseJson.message);
+        }
+    }
 }
 
 async function asignarCategorias(url) {
@@ -31,6 +42,7 @@ async function asignarCategorias(url) {
     }
 }
 
+//TODOS LOS PRODUCTOS DE LA CATEGORIA
 async function getProductos(url) {
     let resultado = await fetch(url + "MLA/search?category=MLA1055&sold_quality=10");
     let parseJson = await resultado.json();
