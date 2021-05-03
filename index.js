@@ -21,8 +21,10 @@ async function asignarCategorias(url) {
 
         let linkCategoria = document.createElement('a')
         linkCategoria.setAttribute('class', 'nav-link')
-        linkCategoria.style.fontSize = '14px'
-        linkCategoria.style.textAlign = 'center'
+        linkCategoria.style.fontSize = '18px'
+        linkCategoria.style.textAlign = 'left'
+        divCategoria.style.listStyleType = 'none'
+        divCategoria.style.textAlign = 'left'
 
         linkCategoria.textContent = `${categorias.children_categories[index].name}`
 

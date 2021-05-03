@@ -9,9 +9,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Tecla commerce</title>
 
-    <link rel="icon" href="./imgs/icon.png">
+    <link rel="icon" href="./imgs/icon.png" />
     <!-- Font Awesome TW Y FB-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
     <!-- Bootstrap core CSS ORDEN DE LA BARRA DE NAV-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <!-- EFECTO DE LA BARRA DE NAV -->
@@ -20,8 +23,9 @@
     <link rel="stylesheet" href="style.css" />   EL CONTENIDO DE LA CATEGORÍA SE AJUSTA AL # ELEMENTOS-->
     <link href="css/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/TC-styles/style.css" />
-    <link rel="stylesheet" href="./css/TC-styles/nav.css">
-    
+    <link rel="stylesheet" href="./css/TC-styles/nav.css" />
+    <link rel="stylesheet" href="style.css" />
+
     <style type="text/css">
       html,
       body,
@@ -54,7 +58,7 @@
     <nav class="navbar navbar-expand-lg navbar-light white scrolling-navbar">
       <div class="container">
         <!-- Brand -->
-        <img src="./imgs/icon.png" alt="logo" class="img-logo">
+        <img src="./imgs/icon.png" alt="logo" class="img-logo" />
         <a class="navbar-brand waves-effect" href="" target="_blank">
           <strong class="font">Tecla Com</strong>
         </a>
@@ -80,7 +84,10 @@
               <a class="nav-link waves-effect" href="#">Inicio </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect" href="checkout.html" target="_blank"
+              <a
+                class="nav-link waves-effect"
+                href="checkout.html"
+                target="_blank"
                 >MiCarrito</a
               >
             </li>
@@ -94,12 +101,20 @@
           <!-- TW Y FB -->
           <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item">
-              <a href="https://www.facebook.com/" class="nav-link waves-effect" target="_blank">
+              <a
+                href="https://www.facebook.com/"
+                class="nav-link waves-effect"
+                target="_blank"
+              >
                 <i class="fab fa-facebook-f"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a href="https://twitter.com/" class="nav-link waves-effect" target="_blank">
+              <a
+                href="https://twitter.com/"
+                class="nav-link waves-effect"
+                target="_blank"
+              >
                 <i class="fab fa-twitter"></i>
               </a>
             </li>
@@ -108,21 +123,19 @@
       </div>
     </nav>
     <!--Main layout-->
-    <main>
-      <div class="container">
-        <!--Navbar-->
+    <main class="main-layout">
+      <!--Navbar-->
+      <div class="main-navigation">
         <h2 class="categorias-title">Categorias</h2>
-        <nav
-          class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5"
-        >
+        <nav class="">
           <!-- Collapsible content -->
-          <div class="collapse navbar-collapse" id="basicExampleNav">
+          <div class="" id="basicExampleNav">
             <!-- Links -->
-            <ul class="navbar-nav mr-auto categorias" id="categorias"></ul>
+            <ul class="categorias" id="categorias"></ul>
             <!-- Links -->
 
-            <form class="form-inline">
-              <div class="md-form my-0">
+            <form class="form-navigation">
+              <div class="lg-form my-0">
                 <input
                   class="form-control mr-sm-2"
                   type="text"
@@ -134,8 +147,9 @@
           </div>
           <!-- Collapsible content -->
         </nav>
-        <!--/.Navbar-->
-
+      </div>
+      <!--/.Navbar-->
+      <div class="container main-content">
         <!--Section: Products v.3-->
         <section class="text-center mb-4">
           <!--Grid row-->
