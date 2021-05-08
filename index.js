@@ -54,13 +54,13 @@ async function asignarCategorias(url) {
 
 /* --------------------- LISTA DE PRODUCTOS POR CATEGORÍA ------------------- */
 
-// let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
-// let idProductos = 'MLM1144';
+let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
+let idProductos = 'MLM1144';
 
 var listaProductos = document.getElementById("main-products");
 
-let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
-let idProductos = 'MLM151595';
+// let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
+// let idProductos = 'MLM151595';
 
 async function getProductos(url) {
     let parseJson;
