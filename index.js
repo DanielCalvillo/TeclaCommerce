@@ -1,8 +1,9 @@
-// require('dotenv').config()
+//require('dotenv').config();
 
+/* 
+var url = process.env.URL_CATEGORIAS
+var idCategoria = process.env.URL_CATEGORIA */
 
-// var url = process.env.URL_CATEGORIAS
-// var idCategoria = process.env.URL_CATEGORIA
 
 var url = "https://api.mercadolibre.com/categories/"
 var idCategoria = "MLM1144"
