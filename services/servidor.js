@@ -3,6 +3,7 @@ const express = require('express')
 const app = express();
 require('dotenv').config();
 const productos = require('../db/dbproductos');
+const categorias = require('../db/dblstcategorias');
 
 //GLOBAL
 app.use(express.json())
@@ -16,8 +17,9 @@ app.listen(process.env.PORT, ()=> {
 // *********INICIAR NUESTROS REPOSITORIOS*********
 
 
-//ALMACEN DE PRODUCTOS
-app.get('/', async function(req, res){
+//ALMACEN DE PRODUCTOS y LISTA DE CATEGORIAS
+app.get('', async function(req, res){
+    let listCategorias = await categorias.getListCategorias();
     let resultadoProductosGen = await productos.getProductosGen();
     let resultadoProductosAccsConsolas = await productos.getProductosAccsConsolas();
     let resultadoProductosAccsPc = await productos.getProductosAccsPc();
@@ -29,6 +31,7 @@ app.get('/', async function(req, res){
     productos.Respuesta = {
         codigo: 200,
         error: false,
+        lstcategorias: listCategorias.children_categories,
         generales: resultadoProductosGen.results,
         accsconsolas: resultadoProductosAccsConsolas.results,
         accspc: resultadoProductosAccsPc.results,
@@ -40,6 +43,10 @@ app.get('/', async function(req, res){
     }
     // console.log('Hola')
     res.send(productos.Respuesta);
+    for(let x=0; x < listCategorias.children_categories.length; x++){
+        categorias.nuevaCategoria(listCategorias.children_categories[x].id, listCategorias.children_categories[x].name);
+    }
+    
     for(let i=0; i < 8; i++){
         productos.nuevoProductoGen(resultadoProductosGen.results[i].id,resultadoProductosGen.results[i].title,resultadoProductosGen.results[i].price, resultadoProductosGen.results[i].thumbnail );
         productos.nuevoProductoAccsConsolas(resultadoProductosAccsConsolas.results[i].id,resultadoProductosAccsConsolas.results[i].title,resultadoProductosAccsConsolas.results[i].price, resultadoProductosAccsConsolas.results[i].thumbnail );
@@ -50,6 +57,11 @@ app.get('/', async function(req, res){
         productos.nuevoProductoVideojuegos(resultadoProductosVideojuegos.results[i].id,resultadoProductosVideojuegos.results[i].title,resultadoProductosVideojuegos.results[i].price, resultadoProductosVideojuegos.results[i].thumbnail );
         productos.nuevoProductoOtros(resultadoProductosOtros.results[i].id,resultadoProductosOtros.results[i].title,resultadoProductosOtros.results[i].price, resultadoProductosOtros.results[i].thumbnail );
     }
+})
+
+//LISTA DE CATEGORIAS
+app.get('/categorias', function (req, res) {
+    res.send(categorias.ListCategorias)
 })
 
 //PRODUCTOS GENERALES

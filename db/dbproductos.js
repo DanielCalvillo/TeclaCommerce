@@ -13,6 +13,7 @@ let productosOtros = 'MLM1152';
 let Respuesta = {
     codigo: 200,
     error: false,
+    lstcategorias: '',
     generales: '',
     accsconsolas: '',
     accspc: '',
