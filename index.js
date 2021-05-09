@@ -61,7 +61,7 @@ async function asignarCategorias(url) {
 var listaProductos = document.getElementById("main-products");
 
 let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
-let idProductos = 'MLM151595';
+let idProductos = 'MLM1144';
 
 async function getProductos(url) {
     let parseJson;
@@ -115,8 +115,8 @@ asignarCategorias(url)
 asignarProductos(url)
 
 // PRUEBA  http://localhost:4000
-/* async function getApiGen(){
-    const url = 'http://localhost:4000'
+async function getApiGen(){
+    const url = 'http://localhost:4000/productos'
     const resp = await fetch(url);
     const data = await resp.json();
     return data;
@@ -125,6 +125,7 @@ asignarProductos(url)
 async function getProductosGen(){
     let producGen = await getApiGen();
     console.log(producGen);
+    console.log(producGen[0]);
 }
 
-getProductosGen(); */
+getProductosGen();

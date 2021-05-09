@@ -28,11 +28,12 @@ let Respuesta = {
 
 //CLASE PRODUCTO
 class Producto {
-    constructor(id, titulo, precio, img){
+    constructor(id, titulo, precio, img, i){
         this.id = id;
         this.titulo = titulo;
         this.precio = precio;
         this.img = img;
+        this.i = i;
     }
 }
 
@@ -40,8 +41,8 @@ class Producto {
 
 let ProductosGen = {}
 
-const nuevoProductoGen = function (id, titulo, precio, img){
-    ProductosGen[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoGen = function (id, titulo, precio, img, i){
+    ProductosGen[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiGen(){
@@ -60,8 +61,8 @@ async function getProductosGen(){
 
 let ProductosAccesoriosConsolas = {}
 
-const nuevoProductoAccsConsolas = function (id, titulo, precio, img){
-    ProductosAccesoriosConsolas[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoAccsConsolas = function (id, titulo, precio, img, i){
+    ProductosAccesoriosConsolas[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiAccsConsolas(){
@@ -80,8 +81,8 @@ async function getProductosAccsConsolas(){
 
 let ProductosAccesoriosPc = {}
 
-const nuevoProductoAccsPc = function (id, titulo, precio, img){
-    ProductosAccesoriosPc[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoAccsPc = function (id, titulo, precio, img, i){
+    ProductosAccesoriosPc[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiAccsPc(){
@@ -100,8 +101,8 @@ async function getProductosAccsPc(){
 
 let ProductosConsolas = {}
 
-const nuevoProductoConsola = function (id, titulo, precio, img){
-    ProductosConsolas[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoConsola = function (id, titulo, precio, img, i){
+    ProductosConsolas[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiConsolas(){
@@ -120,8 +121,8 @@ async function getProductosConsolas(){
 
 let ProductosMaquinitas = {}
 
-const nuevoProductoMaquinitas = function (id, titulo, precio, img){
-    ProductosMaquinitas[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoMaquinitas = function (id, titulo, precio, img, i){
+    ProductosMaquinitas[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiMaquinitas(){
@@ -140,8 +141,8 @@ async function getProductosMaquinitas(){
 
 let ProductosRepuestos = {}
 
-const nuevoProductoRepuesto = function (id, titulo, precio, img){
-    ProductosRepuestos[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoRepuesto = function (id, titulo, precio, img, i){
+    ProductosRepuestos[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiRepuestos(){
@@ -160,8 +161,8 @@ async function getProductosRepuestos(){
 
 let ProductosVideojuegos = {}
 
-const nuevoProductoVideojuegos = function (id, titulo, precio, img){
-    ProductosVideojuegos[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoVideojuegos = function (id, titulo, precio, img, i){
+    ProductosVideojuegos[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiVideojuegos(){
@@ -180,8 +181,8 @@ async function getProductosVideojuegos(){
 
 let ProductosOtros = {}
 
-const nuevoProductoOtros = function (id, titulo, precio, img){
-    ProductosOtros[id] = new Producto (id, titulo, precio, img) 
+const nuevoProductoOtros = function (id, titulo, precio, img, i){
+    ProductosOtros[i] = new Producto (id, titulo, precio, img) 
 }
 
 async function getApiOtros(){

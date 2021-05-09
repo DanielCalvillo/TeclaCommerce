@@ -7,9 +7,10 @@ let idSubCategorias = 'MLM1144'
 
 //CLASE CATEGORÍA
 class Categoria{
-    constructor(id, categoria){
+    constructor(id, categoria, i){
         this.id = id;
         this.categoria = categoria;
+        this.i = i;
     }
 } 
 
@@ -27,8 +28,8 @@ async function getListCategorias(){
     return lstCategorias;
 }
 
-const nuevaCategoria = function (id, categoria){
-    ListCategorias[categoria] = new Categoria (id, categoria)
+const nuevaCategoria = function (id, categoria, i){
+    ListCategorias[i] = new Categoria (id, categoria)
 }
 
 //EXPORTAMOS LA OBTENCIÓN DE LA INFORMACIÓN DE LAS CATEGORÍAS,
