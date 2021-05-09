@@ -1,5 +1,7 @@
+//LIBRERÍAS
 const fetch = require('node-fetch');
 
+//VARS PARA CONSULTA
 let buscarCategoria = 'https://api.mercadolibre.com/sites/MLM/search?category=';
 let productosGenerales = 'MLM1144';
 let productosAccsConsolas = 'MLM438578';
@@ -24,6 +26,7 @@ let Respuesta = {
     otros: ''
 }
 
+//CLASE PRODUCTO
 class Producto {
     constructor(id, titulo, precio, img){
         this.id = id;
@@ -193,6 +196,9 @@ async function getProductosOtros(){
     return producOtros;
 }
 
+//EXPORTAMOS LA RESPUESTA PARA NUESTRA API
+//EXPORTAMOS EL RESULTADO DE LA CONSULTA A LA API CON LOS PRODUCTOS, 
+//LA FUNCIÓN PARA CREAR UN NUEVO PRODUCTO Y EL OBJETO DE CADA TIPO DE PRODUCTO
 module.exports = {Respuesta, getProductosGen, nuevoProductoGen, ProductosGen,
                 getProductosAccsConsolas, nuevoProductoAccsConsolas, ProductosAccesoriosConsolas,
                 getProductosAccsPc, nuevoProductoAccsPc, ProductosAccesoriosPc,

@@ -113,3 +113,18 @@ async function asignarProductos(url) {
 
 asignarCategorias(url)
 asignarProductos(url)
+
+// PRUEBA  http://localhost:4000
+/* async function getApiGen(){
+    const url = 'http://localhost:4000'
+    const resp = await fetch(url);
+    const data = await resp.json();
+    return data;
+}
+
+async function getProductosGen(){
+    let producGen = await getApiGen();
+    console.log(producGen);
+}
+
+getProductosGen(); */

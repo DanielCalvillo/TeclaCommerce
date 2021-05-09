@@ -28,6 +28,8 @@ app.get('', async function(req, res){
     let resultadoProductosRepuestos = await productos.getProductosRepuestos();
     let resultadoProductosVideojuegos = await productos.getProductosVideojuegos();
     let resultadoProductosOtros = await productos.getProductosOtros();
+
+    //SE CONFIGURA LA RESPUESTA CON LO QUE SE OBTUVO DE LA API
     productos.Respuesta = {
         codigo: 200,
         error: false,
@@ -41,12 +43,14 @@ app.get('', async function(req, res){
         videojuegos: resultadoProductosVideojuegos.results,
         otros: resultadoProductosOtros.results
     }
-    // console.log('Hola')
+    // SE ENVÍA LA RESPUESTA
     res.send(productos.Respuesta);
+    //SE GUARDA EN  dblstcategorias.js  EL ID Y EL NOMBRE DE LAS SUBCATEGORÍAS DE LA API
     for(let x=0; x < listCategorias.children_categories.length; x++){
         categorias.nuevaCategoria(listCategorias.children_categories[x].id, listCategorias.children_categories[x].name);
     }
-    
+    //SE GUARDAN LOS 8 PRIMEROS PRODUCTOS DE LA CATEGORÍA EN GENERAL Y DE CADA SUBCATEGORÍA
+    //CON ID, TÍTULO, PRECIO E IMAGEN
     for(let i=0; i < 8; i++){
         productos.nuevoProductoGen(resultadoProductosGen.results[i].id,resultadoProductosGen.results[i].title,resultadoProductosGen.results[i].price, resultadoProductosGen.results[i].thumbnail );
         productos.nuevoProductoAccsConsolas(resultadoProductosAccsConsolas.results[i].id,resultadoProductosAccsConsolas.results[i].title,resultadoProductosAccsConsolas.results[i].price, resultadoProductosAccsConsolas.results[i].thumbnail );
