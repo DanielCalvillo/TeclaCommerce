@@ -23,15 +23,23 @@ async function getApiCategorias(){
     return data;
 }
 
-async function getListCategorias(){
+/* async function getListCategorias(){
     let lstCategorias = await getApiCategorias();
     return lstCategorias;
-}
+} */
 
 const nuevaCategoria = function (id, categoria, i){
     ListCategorias[i] = new Categoria (id, categoria)
 }
 
+//FUNCION DE ALGUNA FALLA PARA ACCEDER CATEGORIAS
+function fallaCategorias (){
+    throw new Error('No es posible acceder en este momento');
+
+}
+
+
 //EXPORTAMOS LA OBTENCIÓN DE LA INFORMACIÓN DE LAS CATEGORÍAS,
 //LA FUNCIÓN PARA CREAR UNA NUEVA CATEGORÍA Y EL OBJETO DONDE SE ALMACENÓ EL ID Y NOMBRE DE CADA CATEGORÍA
-module.exports = {getListCategorias, nuevaCategoria, ListCategorias}
+//Y LA FUNCION FALLA AL HACER GET
+module.exports = {getApiCategorias, nuevaCategoria, ListCategorias, fallaCategorias}

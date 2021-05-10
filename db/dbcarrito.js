@@ -2,19 +2,20 @@
 
 //CLASE CARRITO DE COMPRAS
 class CarritoCompra{
-    constructor(id, producto, precio, img){
+    constructor(id, producto, precio, img, i){
         this.id = id;
         this.producto = producto;
         this.precio = precio;
         this.img = img;
+        this.i = i;
     }
 }
 
 //CARRITO
 let Carrito = {}
 
-const agregarCarrito = function(id, producto, precio, img){
-    Carrito[id] = new CarritoCompra(id, producto, precio, img)
+const agregarCarrito = function(id, producto, precio, img, i){
+    Carrito[i] = new CarritoCompra(id, producto, precio, img)
 }
 
 //SE EXPORTA LA FUNCION PARA AGREGAR PRODUCTOS AL CARRITO 

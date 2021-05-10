@@ -52,10 +52,7 @@ async function getApiGen(){
     return data;
 }
 
-async function getProductosGen(){
-    let producGen = await getApiGen();
-    return producGen;
-}
+
 
 //PRODUCTOS ACCESORIOS PARA CONSOLAS
 
@@ -72,10 +69,7 @@ async function getApiAccsConsolas(){
     return data;
 }
 
-async function getProductosAccsConsolas(){
-    let producAccsConsolas = await getApiAccsConsolas();
-    return producAccsConsolas;
-} 
+
 
 //PRODUCTOS ACCESORIOS PARA PC
 
@@ -92,10 +86,7 @@ async function getApiAccsPc(){
     return data;
 }
 
-async function getProductosAccsPc(){
-    let producAccesoriosPc = await getApiAccsPc();
-    return producAccesoriosPc;
-}
+
 
 //PRODUCTOS CONSOLAS
 
@@ -112,10 +103,7 @@ async function getApiConsolas(){
     return data;
 }
 
-async function getProductosConsolas(){
-    let producConsolas = await getApiConsolas();
-    return producConsolas;
-}
+
 
 //PRODUCTOS MAQUINITAS
 
@@ -132,10 +120,7 @@ async function getApiMaquinitas(){
     return data;
 }
 
-async function getProductosMaquinitas(){
-    let producMaquinitas = await getApiMaquinitas();
-    return producMaquinitas;
-}
+
 
 //PRODUCTOS REPUESTOS PARA CONSOLAS
 
@@ -152,10 +137,7 @@ async function getApiRepuestos(){
     return data;
 }
 
-async function getProductosRepuestos(){
-    let producRepuestos = await getApiRepuestos();
-    return producRepuestos;
-}
+
 
 //PRODUCTOS VIDEOJUEGOS
 
@@ -172,10 +154,7 @@ async function getApiVideojuegos(){
     return data;
 }
 
-async function getProductosVideojuegos(){
-    let producVideojuegos = await getApiVideojuegos();
-    return producVideojuegos;
-}
+
 
 //PRODUCTOS OTROS
 
@@ -192,19 +171,28 @@ async function getApiOtros(){
     return data;
 }
 
-async function getProductosOtros(){
-    let producOtros = await getApiOtros();
-    return producOtros;
+
+
+//FUNCION FALLA
+function fallaProductos (){
+    throw new Error('No es posible acceder en este momento');
+}
+
+//FUNCION FALLA DE AUTENTICACION
+function fallaAutorizacion (){
+    throw new Error('No tienes los permisos necesarios para poder acceder');
 }
 
 //EXPORTAMOS LA RESPUESTA PARA NUESTRA API
 //EXPORTAMOS EL RESULTADO DE LA CONSULTA A LA API CON LOS PRODUCTOS, 
 //LA FUNCIÓN PARA CREAR UN NUEVO PRODUCTO Y EL OBJETO DE CADA TIPO DE PRODUCTO
-module.exports = {Respuesta, getProductosGen, nuevoProductoGen, ProductosGen,
-                getProductosAccsConsolas, nuevoProductoAccsConsolas, ProductosAccesoriosConsolas,
-                getProductosAccsPc, nuevoProductoAccsPc, ProductosAccesoriosPc,
-                getProductosConsolas, nuevoProductoConsola, ProductosConsolas,
-                getProductosMaquinitas, nuevoProductoMaquinitas, ProductosMaquinitas,
-                getProductosRepuestos, nuevoProductoRepuesto, ProductosRepuestos,
-                getProductosVideojuegos, nuevoProductoVideojuegos, ProductosVideojuegos,
-                getProductosOtros, nuevoProductoOtros, ProductosOtros}
+//Y LAS FUNCIONES DE FALLA AL HACER GET Y A LA AUTORIZACION
+module.exports = {Respuesta, getApiGen, nuevoProductoGen, ProductosGen,
+                getApiAccsConsolas, nuevoProductoAccsConsolas, ProductosAccesoriosConsolas,
+                getApiAccsPc, nuevoProductoAccsPc, ProductosAccesoriosPc,
+                getApiConsolas, nuevoProductoConsola, ProductosConsolas,
+                getApiMaquinitas, nuevoProductoMaquinitas, ProductosMaquinitas,
+                getApiRepuestos, nuevoProductoRepuesto, ProductosRepuestos,
+                getApiVideojuegos, nuevoProductoVideojuegos, ProductosVideojuegos,
+                getApiOtros, nuevoProductoOtros, ProductosOtros,
+                fallaProductos, fallaAutorizacion}
