@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../../css/TC-styles/checkout-style.css"/>
     <link href="../../css/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/TC-styles/nav.css">
+    <link rel="stylesheet" href="./style.css">
     
     <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
     <meta name="theme-color" content="#563d7c">
@@ -53,7 +54,7 @@
       <div class="container">
         <!-- Brand -->
         <img src="./imgs/icon.png" alt="logo" class="img-logo">
-        <a class="navbar-brand waves-effect" href="" target="_blank">
+        <a class="navbar-brand waves-effect" href="../../index.html" target="_blank">
           <strong class="font">Tecla Com</strong>
         </a>
 
@@ -75,15 +76,15 @@
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link waves-effect" href="index.html">Inicio </a>
+              <a class="nav-link waves-effect" href="../../index.html">Inicio </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link waves-effect" href="" target="_blank"
+              <a class="nav-link waves-effect" href="./checkout.html" target="_blank"
                 >MiCarrito</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect" href="" target="_blank"
+              <a class="nav-link waves-effect" href="../Checkout/checkout.html" target="_blank"
                 >Perfil</a
               >
             </li>
@@ -112,43 +113,15 @@
         <div class="col-md-4 order-md-2 mb-4 carrito">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Mi Carrito</span>
-            <span class="badge badge-secondary badge-pill color">4</span>
+            <span class="badge badge-secondary badge-pill color" id="productos-totales"></span>
           </h4>
-          <ul class="list-group mb-3 shadow">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>   
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Fourth item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
+          <ul class="list-group mb-3 shadow" id="carrito-compras">
+            
           </ul>
 
           <div class="card p-2">
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (MXN)</span>
-              <strong>$30</strong>
+            <li class="list-group-item d-flex justify-content-between" id="total-carrito">
+              
             </li>
           </div>
           
@@ -284,7 +257,7 @@
               </div>
             </div>
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Aceptar</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="aceptar-datos-usuario">Aceptar</button>
           </form>
         </div>
       </div>
@@ -301,6 +274,7 @@
     <script src="./checkout_files/jquery-3.4.1.slim.min.js.descarga" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="./checkout_files/bootstrap.bundle.min.js.descarga" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
     <script src="./checkout_files/form-validation.js.descarga"></script>
+    <script src="./index.js"></script>
 
   </body>
 </html>

@@ -3,11 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./services/servidor.js"
+    "dev": "nodemon ./services/servidor.js",
+    "trabajo": "node ./services/servidor.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielCalvillo/TeclaCommerce.git"
+  },
+  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielCalvillo/TeclaCommerce/issues"
+  },
+  "homepage": "https://github.com/DanielCalvillo/TeclaCommerce#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7"
+  }
 }
