@@ -3,11 +3,29 @@
 /* 
 var url = process.env.URL_CATEGORIAS
 var idCategoria = process.env.URL_CATEGORIA */
-
+var productos = []
 
 var url = "https://api.mercadolibre.com/categories/"
 var idCategoria = "MLM1144"
 
+
+var listaProductos = document.getElementById("main-products");
+
+let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
+let idProductos = 'MLM1144';
+// PRUEBA  http://localhost:4000
+async function getApiGen(){
+    const url = 'http://localhost:4000/productos'
+    const resp = await fetch(url);
+    const data = await resp.json();
+    return data;
+}
+
+async function getProductosGen(){
+    let producGen = await getApiGen();
+    // console.log(`ESTOS SON LOS PRODUCTOS ${JSON.stringify(producGen)}`);
+    return producGen
+}
 
 /* --------------------- LISTA DE CATEGORÍAS ------------------- */
 var listCategorias = document.getElementById("categorias");
@@ -29,9 +47,16 @@ async function getCategorias(url) {
     }
 }
 
+async function asignarCadaCategoria() {
+    productos = []
+    await asignarProductos(productos)
+    console.log("asignando categoria")
+}
+
 async function asignarCategorias(url) {
     let categorias = await getCategorias(url);
     let subCategorias = categorias.children_categories;
+    console.log(subCategorias)
     for (let index = 0; index < subCategorias.length; index++) {
         let divCategoria = document.createElement('li')
         divCategoria.setAttribute('class', "nav-item")
@@ -42,12 +67,15 @@ async function asignarCategorias(url) {
         linkCategoria.style.textAlign = 'left'
         divCategoria.style.listStyleType = 'none'
         divCategoria.style.textAlign = 'left'
-
+        linkCategoria.addEventListener("click", asignarCadaCategoria);
         linkCategoria.textContent = `${categorias.children_categories[index].name}`
 
         divCategoria.appendChild(linkCategoria);
         listCategorias.appendChild(divCategoria)
     }
+    productos = await getProductosGen();
+    console.log(productos)
+    await asignarProductos(productos)
 }
 
 /* --------------------- LISTA DE CATEGORÍAS ------------------- */
@@ -57,11 +85,6 @@ async function asignarCategorias(url) {
 
 // let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
 // let idProductos = 'MLM1144';
-
-var listaProductos = document.getElementById("main-products");
-
-let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
-let idProductos = 'MLM1144';
 
 async function getProductos(url) {
     let parseJson;
@@ -82,24 +105,21 @@ async function getProductos(url) {
 
 
 
-async function asignarProductos(url) {
-    let productos = await getProductos(url);
-    let listaDeProductos = productos.results;
-    console.log(listaDeProductos)
+async function asignarProductos(productos) {
+
     for (let x = 0; x < 8; x++) {
-        const producto = listaDeProductos[x];
-        console.log(producto)
+        const producto = productos[x];
         let contenedorProducto = document.createElement('div');
         contenedorProducto.setAttribute('class', 'product-container')
 
         let tituloProducto = document.createElement('h2');
-        tituloProducto.textContent = producto.title
+        tituloProducto.textContent = producto.titulo
 
         let imagenProducto = document.createElement('img');
-        imagenProducto.setAttribute('src', producto.thumbnail)
+        imagenProducto.setAttribute('src', producto.img)
 
         let precioProducto = document.createElement('span');
-        precioProducto.textContent = `$${producto.price}`
+        precioProducto.textContent = `$${producto.precio}`
 
         contenedorProducto.appendChild(tituloProducto);
         contenedorProducto.appendChild(imagenProducto);
@@ -112,20 +132,6 @@ async function asignarProductos(url) {
 }
 
 asignarCategorias(url)
-asignarProductos(url)
 
-// PRUEBA  http://localhost:4000
-async function getApiGen(){
-    const url = 'http://localhost:4000/productos'
-    const resp = await fetch(url);
-    const data = await resp.json();
-    return data;
-}
 
-async function getProductosGen(){
-    let producGen = await getApiGen();
-    console.log(producGen);
-    console.log(producGen[0]);
-}
 
-getProductosGen();

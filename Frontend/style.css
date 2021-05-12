@@ -63,3 +63,7 @@
   font-weight: 500;
   height: 20%;
 }
+
+.nav-item:hover {
+  cursor: pointer;
+}
