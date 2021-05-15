@@ -3,7 +3,7 @@
 /* 
 var url = process.env.URL_CATEGORIAS
 var idCategoria = process.env.URL_CATEGORIA */
-
+var productos = []
 
 var url = "https://api.mercadolibre.com/categories/"
 var idCategoria = "MLM1144"
@@ -345,6 +345,24 @@ async function cambiarCategoria(id) {
     }
 }
 
+var listaProductos = document.getElementById("main-products");
+
+let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
+let idProductos = 'MLM1144';
+// PRUEBA  http://localhost:4000
+async function getApiGen(){
+    const url = 'http://localhost:4000/productos'
+    const resp = await fetch(url);
+    const data = await resp.json();
+    return data;
+}
+
+async function getProductosGen(){
+    let producGen = await getApiGen();
+    // console.log(`ESTOS SON LOS PRODUCTOS ${JSON.stringify(producGen)}`);
+    return producGen
+}
+
 /* --------------------- LISTA DE CATEGORÍAS ------------------- */
 var listCategorias = document.getElementById("categorias");
 
@@ -365,9 +383,16 @@ async function getCategorias(url) {
     }
 }
 
+async function asignarCadaCategoria() {
+    productos = []
+    await asignarProductos(productos)
+    console.log("asignando categoria")
+}
+
 async function asignarCategorias(url) {
     let categorias = await getCategorias(url);
     let subCategorias = categorias.children_categories;
+    console.log(subCategorias)
     for (let index = 0; index < subCategorias.length; index++) {
         let categoria = subCategorias[index];
         let divCategoria = document.createElement('li')
@@ -386,6 +411,9 @@ async function asignarCategorias(url) {
         divCategoria.appendChild(linkCategoria);
         listCategorias.appendChild(divCategoria)
     }
+    productos = await getProductosGen();
+    console.log(productos)
+    await asignarProductos(productos)
 }
 
 /* --------------------- LISTA DE CATEGORÍAS ------------------- */
