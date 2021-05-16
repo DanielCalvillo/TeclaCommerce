@@ -1,0 +1,13 @@
+.product-container {
+    padding: 1rem;
+    border-bottom: 1px solid grey;
+}
+
+.product-container h2 {
+    font-size: 14px;
+    text-align: center;
+}
+
+.product-container span {
+    margin-left: 2rem;
+}

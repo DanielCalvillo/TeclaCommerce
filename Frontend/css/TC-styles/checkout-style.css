@@ -1,0 +1,13 @@
+.contenido{
+    background-color: rgba(255, 255, 255, 0.959);
+    padding: 30px;
+}
+
+.carrito{
+    padding: 30px;
+}
+
+.form-control{
+    background-color: whitesmoke;
+    box-shadow: 0px 0px 0px grey inset;
+}
