@@ -8,7 +8,7 @@ const productos = require('../db/dbproductos');
 const categorias = require('../db/dblstcategorias');
 const middcategorias = require('../middleware/middcategorias');
 const middproductos = require('../middleware/middproductos');
-const accesos = require('../middleware/middacceso');
+const accesos = require('../middleware/middacceso'); 
 
 const { Carrito, agregarCarrito } = require('../db/dbcarrito')
 
