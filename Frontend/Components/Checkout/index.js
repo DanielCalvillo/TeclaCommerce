@@ -9,7 +9,7 @@ const botonAceptar = document.getElementById("aceptar-datos-usuario");
 
 async function getCarrito() {
 
-    const response = await fetch('http://localhost:5000/productos/carrito')
+    const response = await fetch('http://localhost:4000/productos/carrito')
 
     const parsedResponse = await response.json()
     return parsedResponse

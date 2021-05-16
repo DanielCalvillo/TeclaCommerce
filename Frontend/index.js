@@ -28,7 +28,7 @@ var listaOtros = document.getElementById("otros-productos")
 
 async function agregarProductoAlCarrito(producto) {
 
-    const response = await fetch('http://localhost:5000/productos/carrito', {
+    const response = await fetch('http://localhost:4000/productos/carrito', {
         method: 'POST',
         headers: {"Content-type": "application/json;charset=UTF-8"},
         body: JSON.stringify(producto)
@@ -39,9 +39,11 @@ async function agregarProductoAlCarrito(producto) {
 
 
 async function getApiGen(extra){
-    let url = `http://localhost:5000/productos`
+    let url;
     if (extra) {
-        url = `http://localhost:5000/productos/${extra}`
+        url = `http://localhost:4000/productos/${extra}`
+    } else {
+        url = `http://localhost:4000/productos`
     }
     const resp = await fetch(url);
     const data = await resp.json();
@@ -313,10 +315,12 @@ async function cambiarCategoria(id) {
     switch(id) {
         case "MLM438578":
             const productosAccesoriosConsolas = await getApiGen("accsconsolas");
+            console.log(productosAccesoriosConsolas)
             asignarProductosPorCategoria(productosAccesoriosConsolas, 1)
             break;
         case "MLM123324":
             const productosAccesoriosPcGaming = await getApiGen("accspc");
+            console.log(productosAccesoriosPcGaming)   
             asignarProductosPorCategoria(productosAccesoriosPcGaming, 2)
             break;
         case "MLM167860":
@@ -345,23 +349,22 @@ async function cambiarCategoria(id) {
     }
 }
 
-var listaProductos = document.getElementById("main-products");
 
 let urlProductos = 'https://api.mercadolibre.com/sites/MLM/search?category=';
 let idProductos = 'MLM1144';
 // PRUEBA  http://localhost:4000
-async function getApiGen(){
-    const url = 'http://localhost:4000/productos'
-    const resp = await fetch(url);
-    const data = await resp.json();
-    return data;
-}
+// async function getApiGen(){
+//     const url = 'http://localhost:4000/productos'
+//     const resp = await fetch(url);
+//     const data = await resp.json();
+//     return data;
+// }
 
-async function getProductosGen(){
-    let producGen = await getApiGen();
-    // console.log(`ESTOS SON LOS PRODUCTOS ${JSON.stringify(producGen)}`);
-    return producGen
-}
+// async function getProductosGen(){
+//     let producGen = await getApiGen();
+//     // console.log(`ESTOS SON LOS PRODUCTOS ${JSON.stringify(producGen)}`);
+//     return producGen
+// }
 
 /* --------------------- LISTA DE CATEGORÍAS ------------------- */
 var listCategorias = document.getElementById("categorias");
