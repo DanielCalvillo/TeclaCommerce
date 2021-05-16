@@ -28,7 +28,7 @@ var listaOtros = document.getElementById("otros-productos")
 
 async function agregarProductoAlCarrito(producto) {
 
-    const response = await fetch('http://localhost:5000/productos/carrito', {
+    const response = await fetch('http://localhost:4000/productos/carrito', {
         method: 'POST',
         headers: {"Content-type": "application/json;charset=UTF-8"},
         body: JSON.stringify(producto)
@@ -39,9 +39,9 @@ async function agregarProductoAlCarrito(producto) {
 
 
 async function getApiGen(extra){
-    let url = `http://localhost:5000/productos`
+    let url = `http://localhost:4000/productos`
     if (extra) {
-        url = `http://localhost:5000/productos/${extra}`
+        url = `http://localhost:4000/productos/${extra}`
     }
     const resp = await fetch(url);
     const data = await resp.json();
