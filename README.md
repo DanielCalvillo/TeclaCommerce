@@ -2,7 +2,7 @@
 
 ¿COMO USAR NUESTRA APLICACIÓN? ...
 
- 1.- INICIAR LA APLICACIÓN POSICIONÁNDOSE EN LA CARPETA "Backend" Y EJECUTAR LOS COMANDOS: npm init --save, seguido de npm i
+ 1.- INICIAR LA APLICACIÓN POSICIONÁNDOSE EN LA CARPETA "Backend" Y EJECUTAR LOS COMANDOS: npm install
 (Para este punto, se deberá tener instalado NodeJs).
 
  2.- INICIAR EL SERVIDOR CON EL COMANDO: npm run dev.
