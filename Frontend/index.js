@@ -416,6 +416,7 @@ async function asignarCategorias(url) {
     }
     productos = await getProductosGen();
     console.log(productos)
+    console.log(productos[3])
     await asignarProductos(productos)
 }
 

@@ -45,6 +45,7 @@ async function fillCarrito() {
     textoTotal.textContent = "Total (MXN)"
 
     let elPrecio = document.createElement('strong')
+    precioTotal = precioTotal.toFixed(2);
     elPrecio.textContent = `$${precioTotal}`
 
     totalCarrito.appendChild(textoTotal);
