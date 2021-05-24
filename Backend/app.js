@@ -5,8 +5,8 @@ const sequelize = require('./db/conexion')
 const router = require('./routes/routes');
 
 
-//Import Models
-const Products = require('./models/products')
+// //Import Models
+// const Products = require('./models/products')
 
 //Middleware globales
 app.use(express.json())
