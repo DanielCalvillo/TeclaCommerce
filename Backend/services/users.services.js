@@ -1,6 +1,6 @@
 const sequelize = require('../db/conexion');
-const Users = require('../models/products');
-
+const Users = require('../models/users');
+const jwt = require('jsonwebtoken')
 
 const generaToken = async (data)=>{
   try {
@@ -16,16 +16,16 @@ const generaToken = async (data)=>{
 
 const findAllUser = async (req, res) => {
     try {
-        const myProducts = Users.findAll();
-        res.status(200).json(myProducts);
+        const myUsers = await sequelize.query('SELECT * FROM "Users"')
+        res.status(200).json(myUsers);
     } catch(err) {
         console.log(`Error obteniendo Usuarios: ${err}`)
         res.status(400).json({message: "Error obteniendo Usuarios", error: err})
     }
 }
 
-const findOneUser = async (usr)=>{
-  let resultado = await Users.findOne({where: { name: usr.usuario, pass: usr.pass}})
+const userExistOnDatabase = async (usr) => {
+  let resultado = await Users.findOne({where: { name: usr.usuario, password: usr.password}})
   // null
   if (resultado === null){
       return false
@@ -34,18 +34,46 @@ const findOneUser = async (usr)=>{
   }
 }
 
+const findOneUser = async (req, res) => {
+    const id = req.params.id
+    try {
+        const user = await Users.findOne({where: { user_id: id }})
+        res.status(200).json( { message: "User Found Succesfully", User: user})
+    } catch (err) {
+        res.status(400).json({ message: "User doesn't exist on database", error: err})
+    }
+}
+
 
 const createNewUser = async (req, res) => {
+    const usuarioNuevo = req.body
     try {
-        const newProduct = await Users.create({
-            name: req.body.title,
-            first_name: req.body.price,
-            last_name: req.body.img,
-            email: req.body.email
+        const newUser = await Users.create({
+            name: usuarioNuevo.name,
+            first_name: usuarioNuevo.first_name,
+            last_name: usuarioNuevo.last_name,
+            password: usuarioNuevo.password,
+            email: usuarioNuevo.email
         })
-        res.status(200).json({ message: "user Created succesfully", product: newProduct})
+        res.status(200).json({ message: "User Created succesfully", User: newUser})
     } catch (err) {
-        res.status(400).json({ message: "Error creating user", error: err })
+        res.status(400).json({ message: "Error creating User", error: err })
+    }
+}
+
+const loginUser = async (req, res) => {
+    let user = req.body
+    try {
+        let userExist = await userExistOnDatabase(user);
+        if (userExist) {
+            let tokenGenerated = await generaToken(user)
+            res.status(200).json({ message: "token generado correctamente", token: tokenGenerated})
+        } else {
+            throw new Error (err)
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(400).json({ message: "Error en el login", error: err})
     }
 }
 
@@ -81,5 +109,6 @@ module.exports = {
   deleteUser,
   updateUser,
   generaToken,
-  findOneUser
+  findOneUser,
+  loginUser
 }

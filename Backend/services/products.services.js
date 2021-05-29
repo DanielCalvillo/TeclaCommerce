@@ -3,7 +3,7 @@ const Products = require('../models/products');
 
 const findAllProducts = async (req, res) => {
     try {
-        const myProducts = Products.findAll();
+        const myProducts = sequelize.query('SELECT * FROM "Products"');
         res.status(200).json(myProducts);
     } catch(err) {
         console.log(`Error obteniendo productos: ${err}`)

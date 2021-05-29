@@ -21,7 +21,7 @@ app.set('views', __dirname + '/views')
 
 app.get('/', (req, res) => {
     res.send('✅ - Server is up and running !!');
-  });
+});
   
 
 app.use('/api/v1', router);

@@ -1,8 +1,8 @@
 const express = require('express');
 
-const products = require('../services/products.services')
-const users = require('../services/users.services')
-const midd = require('../middleware/midd.usuario')
+const products = require('../services/products.services');
+const users = require('../services/users.services');
+const midd = require('../middleware/midd.usuario');
 const router = express.Router();
 
 //Exportar mi vista del mvc
@@ -19,29 +19,17 @@ router.post('/products/:id', midd.verificacionUsuario, products.updateProduct);
 router.delete('/products/:id', midd.verificacionUsuario, products.deleteProduct);
 
 //Get all users
-router.get('/users', midd.verificacionUsuario, users.findAllUser);
+router.get('/users', users.findAllUser);
+//Get OneUser
+router.get('/users/:id', midd.verificacionUsuario, users.findOneUser);
 //Create new user
-router.post('/users', midd.verificacionUsuario, users.createNewUser);
+router.post('/users', users.createNewUser);
 //Update user
 router.delete('/users/:id', midd.verificacionUsuario, users.updateUser);
 //Delete user
 router.post('/users/:id', midd.verificacionUsuario, users.deleteUser);
 
-router.post('/login', async (req,res) => {
-  let usuario = req.body
-        try {
-            let resultado = await users.findOneUser(usuario)
-            if (resultado){
-                let tokenResult = await users.generaToken(usuario)
-                res.json(tokenResult)
-            }else {
-                throw new Error (err)
-            }
-        }catch (err){
-            console.log(err)
-            res.status(400).json('Usuario o contrasena incorrecta')
-        }
-})
+router.post('/login', users.loginUser);
 
 
 // Rutas desde el MVC
