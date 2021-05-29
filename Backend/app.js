@@ -4,12 +4,20 @@ const app = express()
 const sequelize = require('./db/conexion')
 const router = require('./routes/routes');
 
+const Products = require('./models/products');
+const Categories = require('./models/categories');
+const Users = require('./models/users');
 
 // //Import Models
 // const Products = require('./models/products')
 
 //Middleware globales
 app.use(express.json())
+
+//Configuraciones globales
+app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
 
 app.get('/', (req, res) => {
     res.send('✅ - Server is up and running !!');
@@ -37,10 +45,13 @@ async function inicioServidor() {
 }
 
 async function synchronizeTables() {
-    await sequelize.sync({ force: true });
+    // await sequelize.sync({ force: true });
+    Users.sync({ force: true })
+    Categories.sync({ force: true })
+    Products.sync({ force: true })
     console.log('All models were synchronized successfully')
 }
 inicioServidor()
 
-// Run this function if your database is not synchronized
+// // Run this function if your database is not synchronized
 // synchronizeTables()
