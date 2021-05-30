@@ -7,6 +7,7 @@ const router = require('./routes/routes');
 const Products = require('./models/products');
 const Categories = require('./models/categories');
 const Users = require('./models/users');
+const Customers = require('./models/customers');
 
 // //Import Models
 // const Products = require('./models/products')
@@ -36,7 +37,7 @@ async function inicioServidor() {
         await sequelize.authenticate();
         console.log('Conexiòn con la DB correcta!')
         app.listen(process.env.PORT, function (){
-            console.log(`Sistema iniciado en el puerto ${process.env.PORT}`)
+            console.log(`Sistema iniciado en  http://${process.env.HOST}:${process.env.PORT}`)
         })
     } catch (err) {
         console.log(err)
@@ -49,9 +50,17 @@ async function synchronizeTables() {
     Users.sync({ force: true })
     Categories.sync({ force: true })
     Products.sync({ force: true })
+    Customers.sync({ force:true })
     console.log('All models were synchronized successfully')
 }
+
+
 inicioServidor()
 
 // // Run this function if your database is not synchronized
-// synchronizeTables()
+//synchronizeTables()
+
+/* HACER TABLA DE CUSTOMERS customers
+RUTAS DE LOS METODOS
+APLICAR MIDD
+SERVICIOS CON LA FUNCION DE C/METODO */

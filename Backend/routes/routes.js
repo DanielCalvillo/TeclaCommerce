@@ -2,7 +2,9 @@ const express = require('express');
 
 const products = require('../services/products.services');
 const users = require('../services/users.services');
+const customers = require('../services/customers.services');
 const midd = require('../middleware/midd.usuario');
+const middcustom = require('../middleware/midd.cliente')
 const router = express.Router();
 
 //Exportar mi vista del mvc
@@ -25,11 +27,25 @@ router.get('/users/:id', midd.verificacionUsuario, users.findOneUser);
 //Create new user
 router.post('/users', users.createNewUser);
 //Update user
-router.delete('/users/:id', midd.verificacionUsuario, users.updateUser);
+router.post('/users/:id', midd.verificacionUsuario, users.updateUser);
 //Delete user
-router.post('/users/:id', midd.verificacionUsuario, users.deleteUser);
+router.delete('/users/:id', midd.verificacionUsuario, users.deleteUser);
 
 router.post('/login', users.loginUser);
+
+
+//Get all customers
+router.get('/customers', customers.findAllCustomers);
+//Get OneCustom
+router.get('/custom/:id', midd.verificacionUsuario, customers.findOneCustom);
+//Create new custom
+router.post('/custom', customers.createNewCustom);
+//Update custom
+router.post('/custom/:id', middcustom.verificacionCliente, customers.updateCustom);
+//Delete custom
+router.delete('/custom/:id', middcustom.verificacionCliente, customers.deleteCustom);
+
+router.post('/logincustom', customers.loginCustom);
 
 
 // Rutas desde el MVC

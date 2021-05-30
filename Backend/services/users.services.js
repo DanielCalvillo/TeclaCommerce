@@ -81,7 +81,7 @@ const deleteUser = async (req, res) => {
     try {
         await Users.destroy({
             where: {
-                service_id: req.params.id
+                user_id: req.params.id
             }
         })
         res.status(200).json({ message: "user deleted succesfully" })
@@ -92,10 +92,11 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-        const updatedProduct = await Users.update({ title: req.body.title }, {
-            where: {
-                service_id: req.params.id
-            }
+        const updatedProduct = await Users.update({ 
+            title: req.body.title 
+        }, 
+        {
+            where: { service_id: req.params.id }
         })
         res.status(200).json({ message: "user updated succesfully", product: updatedProduct});
     } catch (err) {
@@ -112,3 +113,5 @@ module.exports = {
   findOneUser,
   loginUser
 }
+
+            
