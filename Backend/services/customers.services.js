@@ -14,24 +14,24 @@ const generaToken = async (data)=>{
     }
 }
 
-const loginCustom = async (req, res)=>{
-    let custom = req.body
+const loginCustomer = async (req, res)=>{
+    let customer = req.body
     try{
-        let customExist = await customExistOnDataBase(custom);
-        if(customExist){
-            let tokenGenerated = await generaToken(custom);
+        let customerExist = await customExistOnDataBase(customer);
+        if(customerExist){
+            let tokenGenerated = await generaToken(customer);
             res.status(200).json({message: "token generado correctamente", token: tokenGenerated})
         }else{
             throw new Error (error)
         }
-    }catch(error){
-        console.log(error)
-        res.status(400).json({ message: "Error en el login", error: err})
+    }catch(err){
+        console.log("error en el login de customer")
+        res.status(400).json({ message: "Error en el login", error: err.message})
     }
 }
 
-const customExistOnDataBase = async (custom)=>{
-    let resultado = await Customers.findOne({where: {user: custom.user, password: custom.password}})
+const customExistOnDataBase = async (customer)=>{
+    let resultado = await Customers.findOne({where: {name: customer.name, password: customer.password}})
     if(resultado === null){
         return false
     }else{
@@ -39,54 +39,47 @@ const customExistOnDataBase = async (custom)=>{
     }
 }
 
-const createNewCustom = async (req, res)=>{
-    const customNew = req.body
+const createNewCustomer = async (req, res)=>{
+    const customerNew = req.body
     try{
-        const newCustom = await Customers.create({
-            first_name: customNew.first_name,
-            last_name: customNew.last_name,
-            user: customNew.user,
-            password: customNew.password,
-            email: customNew.email,
-            address: customNew.address,
-            country: customNew.country,
-            state: customNew.state,
-            zip: customNew.zip
+        const newCustomer= await Customers.create({
+            name: customerNew.name,
+            first_name: customerNew.first_name,
+            last_name: customerNew.last_name,
+            password: customerNew.password,
+            email: customerNew.email,
+            address: customerNew.address,
+            country: customerNew.country,
+            state: customerNew.state,
+            postal_code: customerNew.postal_code
         })
-        res.status(200).json({ message: "Custom Created succesfully", Custom: newCustom})
+        res.status(200).json({ message: "Customer Created succesfully", Custom: newCustomer})
     }catch(error){
-        res.status(400).json({ message: "Error creating User", error: error })
+        res.status(400).json({ message: "Error creating Customer", error: error })
     }
 }
 
-const updateCustom = async (req, res)=>{
-    const customUp = req.body;
+const updateCustomer = async (req, res)=>{
+    const customer = req.body;
     try{
-        const customUpdated = await Customers.update({
-            password: customUp.password,
-            email: customUp.email,
-            address: customUp.address,
-            country: customUp.country,
-            state: customUp.state,
-            zip: customUp.zip
-        },
+        const customerUpdated = await Customers.update(customer,
         {
-            where:{custom_id: req.params.id}
+            where:{customer_id: req.params.id}
         })
-        res.status(200).json({ message: "Custom updated succesfully", product: customUpdated })
+        res.status(200).json({ message: "Customer updated succesfully", product: customerUpdated })
     }catch(error){
-        res.status(400).json({ message: "Error updating Custom", error: error})
+        res.status(400).json({ message: "Error updating Customer", error: error})
     }
 }
 
-const deleteCustom = async (req, res)=>{
+const deleteCustomer = async (req, res)=>{
     try{
         await Customers.destroy({
-            where: {custom_id: req.params.id}
+            where: {customer_id: req.params.id}
         })
-        res.status(200).json({ message: "Custom deleted succesfully" })
+        res.status(200).json({ message: "Customer deleted succesfully" })
     }catch(error){
-        res.status(400).json({ message: "Could'nt delete Custom", error: error})
+        res.status(400).json({ message: "Could'nt delete Customer", error: error})
     }
 }
 
@@ -100,21 +93,21 @@ const findAllCustomers = async (req, res) => {
     }
 }
 
-const findOneCustom = async (req, res) => {
+const findOneCustomer = async (req, res) => {
     const id = req.params.id
     try {
-        const custom = await Customers.findOne({where: { custom_id: id }})
-        res.status(200).json( { message: "Cuatom Found Succesfully", Custom: custom})
+        const customer = await Customers.findOne({where: { customer_id: id }})
+        res.status(200).json( { message: "Customer Found Succesfully", Customer: customer})
     } catch (err) {
-        res.status(400).json({ message: "Cuatom doesn't exist on database", error: err})
+        res.status(400).json({ message: "Customer doesn't exist on database", error: err})
     }
 }
 
 module.exports = {
-    createNewCustom,
-    loginCustom,
-    updateCustom,
-    deleteCustom,
+    createNewCustomer,
+    loginCustomer,
+    updateCustomer,
+    deleteCustomer,
     findAllCustomers,
-    findOneCustom
+    findOneCustomer
 }

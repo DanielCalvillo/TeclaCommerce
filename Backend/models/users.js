@@ -6,6 +6,8 @@ class Users extends Model {}
 Users.init({
     //Model attributes are defined here
     user_id: {
+        allowNull: false,
+        primaryKey: true,
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4
     },
