@@ -1,22 +1,25 @@
 const {Sequelize, DataTypes, Model} = require('sequelize');
 const sequelize = require('../db/conexion');
+const Products = require('./products');
 
 class Customers extends Model {}
 
 Customers.init({
-    custom_id: {
+    customer_id: {
+        allowNull: false,
+        primaryKey: true,
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     first_name: {
         type: DataTypes.STRING,
         allowNull: false
     },
     last_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    user: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -40,13 +43,18 @@ Customers.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    zip: {
+    postal_code: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    products: {
+        type: DataTypes.JSON,
+        allowNull: true
+    }
 },{
     sequelize,
     modelName: 'Customers'
 })
+
 
 module.exports = Customers

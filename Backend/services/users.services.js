@@ -36,6 +36,7 @@ const userExistOnDatabase = async (usr) => {
 
 const findOneUser = async (req, res) => {
     const id = req.params.id
+    console.log("is getting here")
     try {
         const user = await Users.findOne({where: { user_id: id }})
         res.status(200).json( { message: "User Found Succesfully", User: user})
@@ -91,14 +92,13 @@ const deleteUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+    const user = req.body
     try {
-        const updatedProduct = await Users.update({ 
-            title: req.body.title 
-        }, 
+        const updatedUser = await Users.update(user, 
         {
-            where: { service_id: req.params.id }
+            where: { user_id: req.params.id }
         })
-        res.status(200).json({ message: "user updated succesfully", product: updatedProduct});
+        res.status(200).json({ message: "user updated succesfully", User: updatedUser});
     } catch (err) {
         res.status(400).json({ message: "Error updating user", error: err})
     }

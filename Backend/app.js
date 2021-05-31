@@ -58,9 +58,4 @@ async function synchronizeTables() {
 inicioServidor()
 
 // // Run this function if your database is not synchronized
-//synchronizeTables()
-
-/* HACER TABLA DE CUSTOMERS customers
-RUTAS DE LOS METODOS
-APLICAR MIDD
-SERVICIOS CON LA FUNCION DE C/METODO */
+// synchronizeTables()
