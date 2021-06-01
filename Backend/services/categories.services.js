@@ -1,9 +1,12 @@
 const sequelize = require('../db/conexion');
 const Categories = require('../models/categories');
+const { Op } = require('sequelize');
+
 
 const findAllCategories = async (req, res) => {
     try {
-        const myCategories = sequelize.query('SELECT * FROM "Categories"');
+        const myCategories = await sequelize.query('SELECT * FROM "Categories"')
+        console.log(myCategories)
         res.status(200).json(myCategories);
     } catch(err) {
         console.log(`Error obteniendo Categorias: ${err}`)

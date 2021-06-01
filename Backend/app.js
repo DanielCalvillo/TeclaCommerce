@@ -3,7 +3,7 @@ const express = require('express');
 const app = express()
 const sequelize = require('./db/conexion')
 const router = require('./routes/routes');
-
+var cors = require('cors');
 const Products = require('./models/products');
 const Categories = require('./models/categories');
 const Users = require('./models/users');
@@ -14,7 +14,11 @@ const Customers = require('./models/customers');
 
 //Middleware globales
 app.use(express.json())
-
+app.use(cors({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers" : "Content-Type",
+    "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PATCH"
+}));
 //Configuraciones globales
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')

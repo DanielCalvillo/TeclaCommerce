@@ -1,16 +1,46 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Login</title>
-</head>
+<%- include("cabeceras/index") %>
 <body>
-    <h1>Login con JWT</h1>
-    
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
 
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <img
+            id="icon"
+            alt="User Icon"
+            src="./imgs/person.svg"
+            class="user-icon"
+          />
+        </div>
 
-    <script src="js/index.js"></script>
-</body>
+        <!-- Login Form -->
+        <form>
+          <input
+            type="text"
+            id="login"
+            class="fadeIn second"
+            name="login"
+            placeholder="login"
+          />
+          <input
+            type="text"
+            id="password"
+            class="fadeIn third"
+            name="login"
+            placeholder="password"
+          /> 
+          <button type="submit" class="fadeIn fourth" value="Log In">
+          <a href="#" onclick="login()">Login</a> 
+         </button>
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+          <a class="underlineHover" href="/Frontend/index.html">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+    <script src="/js/index.js"></script>
+  </body>
 </html>

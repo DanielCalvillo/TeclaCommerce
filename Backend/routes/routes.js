@@ -47,10 +47,11 @@ router.post('/customers', customers.createNewCustomer);
 router.patch('/customers/:id', midd.verificacionUsuario, customers.updateCustomer);
 //Delete custom
 router.delete('/customers/:id', midd.verificacionUsuario, customers.deleteCustomer);
-
+//Update car
+router.post('/customers/car/:id', midd.verificacionUsuario, customers.addProductToCar);
 
 //Get all Categories
-router.get('/categories', midd.verificacionUsuario, categories.findAllCategories);
+router.get('/categories', categories.findAllCategories);
 //Get OneCustomer
 // router.get('/customers/:id', midd.verificacionUsuario, customers.findOneCustomer);
 //Create new custom
