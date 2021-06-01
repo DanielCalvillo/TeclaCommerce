@@ -16,21 +16,24 @@ const generaToken = async (data)=>{
 
 const loginCustomer = async (req, res)=>{
     let customer = req.body
-    try{
+    console.log(customer)
+        try{
         let customerExist = await customExistOnDataBase(customer);
         if(customerExist){
             let tokenGenerated = await generaToken(customer);
-            res.status(200).json({message: "token generado correctamente", token: tokenGenerated})
+
+            return res.status(200).json({message: "token generado correctamente", token: tokenGenerated})
         }else{
             throw new Error (error)
         }
     }catch(err){
-        console.log("error en el login de customer")
-        res.status(400).json({ message: "Error en el login", error: err.message})
+        console.log("error en el login de customer" + err)
+        res.status(400).json({ message: "Correo o contraseña incorrectos", error: err.message})
     }
 }
 
 const customExistOnDataBase = async (customer)=>{
+    console.log(customer)
     let resultado = await Customers.findOne({where: {name: customer.name, password: customer.password}})
     if(resultado === null){
         return false
@@ -103,11 +106,32 @@ const findOneCustomer = async (req, res) => {
     }
 }
 
+const addProductToCar = async (req, res) => {
+    const producto = req.body
+    const idCostumer = req.params.id
+    console.log(idCostumer);
+    try {
+        const costumer = await Customers.findOne({where: { customer_id: idCostumer}})
+        if (costumer.products === null) {
+            costumer.products = {}
+        }
+        let carrito = costumer.products
+        carrito = {...carrito, productoAgregado: producto}
+        costumer.update({
+            products: carrito
+        })
+        res.status(200).json({message: "car updated", costumer: costumer.products})
+    } catch (err){
+        res.status(400).json({message: "Error adding to car", error: err.message})
+    }
+}
+
 module.exports = {
     createNewCustomer,
     loginCustomer,
     updateCustomer,
     deleteCustomer,
     findAllCustomers,
-    findOneCustomer
+    findOneCustomer,
+    addProductToCar
 }

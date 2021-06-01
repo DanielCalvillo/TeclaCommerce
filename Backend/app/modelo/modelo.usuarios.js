@@ -8,7 +8,7 @@ module.exports = class Usuarios {
         this.datos = datos
     }
 
-    async listar () {
+    async login () {
         console.log('metodo ' + this.datos)
         try {
           const resultado = await Users.findAll();
@@ -17,17 +17,5 @@ module.exports = class Usuarios {
         } catch (err) {
           throw new Error(err.message)
         } 
-    }
-
-    async alta (){
-
-    }
-
-    async baja() {
-
-    }
-
-    async modificar () {
-        
     }
 }

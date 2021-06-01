@@ -5,7 +5,7 @@ const listarDatosUsuarios = async (req, res) => {
 
   try {
     let resultado = await controladorUsuarios.listarUsuarios(data);
-    res.render('index', { result: resultado })
+    res.render('login', { result: resultado })
   } catch (err) {
     console.log(err)
     res.status(400).json('Error en la consulta')
